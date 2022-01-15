@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { parseISO, compareDesc } from 'date-fns'
 import { formatDateISO } from './date'
-import { POSTS_DIR } from '~/consts.server'
+import { POSTS_DIR, ROOT_DIR } from '~/consts.server'
 
 export interface StandalonePost {
   title: string
@@ -22,27 +22,29 @@ export interface SeriesPart extends Omit<StandalonePost, 'published'> {
 }
 
 export async function getAllPosts(): Promise<Array<StandalonePost | Series>> {
-  const postOrSeriesBasenames = await fs.readdir(POSTS_DIR, {
-    withFileTypes: true,
-  })
+  // @ts-ignore
+  return await fs.readdir(ROOT_DIR)
+  // const postOrSeriesBasenames = await fs.readdir(POSTS_DIR, {
+  //   withFileTypes: true,
+  // })
 
-  const posts = await Promise.all(
-    postOrSeriesBasenames
-      .filter((dirent) => dirent.name !== '__tests__')
-      .map(async (dirent) => {
-        return dirent.isFile()
-          ? await getPost(dirent.name)
-          : await getSeries(dirent.name)
-      }),
-  )
+  // const posts = await Promise.all(
+  //   postOrSeriesBasenames
+  //     .filter((dirent) => dirent.name !== '__tests__')
+  //     .map(async (dirent) => {
+  //       return dirent.isFile()
+  //         ? await getPost(dirent.name)
+  //         : await getSeries(dirent.name)
+  //     }),
+  // )
 
-  posts.sort(comparePublished)
+  // posts.sort(comparePublished)
 
-  if (process.env.NODE_ENV === 'production') {
-    return posts.filter((post) => post.published)
-  }
+  // if (process.env.NODE_ENV === 'production') {
+  //   return posts.filter((post) => post.published)
+  // }
 
-  return posts
+  // return posts
 }
 
 export async function getPost(file: string): Promise<StandalonePost> {

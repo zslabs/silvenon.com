@@ -25,6 +25,7 @@ export const meta: MetaFunction = () =>
 
 export default function Home() {
   const posts = useLoaderData<Array<StandalonePost | Series>>()
+  console.log({ posts })
   const location = useLocation()
   const [searchOpen, setSearchOpen] = useState(false)
   return (
