@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { parseISO, compareDesc } from 'date-fns'
 import { formatDateISO } from './date'
-import { POSTS_DIR, ROOT_DIR } from '~/consts.server'
+import { POSTS_DIR } from '~/consts.server'
 
 export interface StandalonePost {
   title: string
@@ -23,7 +23,7 @@ export interface SeriesPart extends Omit<StandalonePost, 'published'> {
 
 export async function getAllPosts(): Promise<Array<StandalonePost | Series>> {
   // @ts-ignore
-  return await fs.readdir(ROOT_DIR)
+  return process.cwd()
   // const postOrSeriesBasenames = await fs.readdir(POSTS_DIR, {
   //   withFileTypes: true,
   // })
