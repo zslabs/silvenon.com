@@ -25,7 +25,6 @@ export const meta: MetaFunction = () =>
 
 export default function Home() {
   const posts = useLoaderData<Array<StandalonePost | Series>>()
-  console.log({ posts })
   const location = useLocation()
   const [searchOpen, setSearchOpen] = useState(false)
   return (
@@ -39,6 +38,7 @@ export default function Home() {
           <div className="bg-white dark:bg-gray-800 p-3 ring-2 ring-purple-400 rounded-lg sm:flex">
             <Prose className="p-3 pb-4 sm:order-2 sm:flex-1 sm:self-center lg:px-5 lg:py-3">
               <h1 className="!mb-0">{author.name}</h1>
+              {JSON.stringify(posts)}
               <p>
                 {author.bio} <Link to="about">More about me →</Link>
               </p>
@@ -75,7 +75,7 @@ export default function Home() {
       <main className="mt-6 px-4 sm:flex sm:justify-center md:pb-4">
         <div>
           <Search
-            posts={posts}
+            posts={[]}
             onOpen={() => setSearchOpen(true)}
             onClose={() => setSearchOpen(false)}
           />
@@ -88,7 +88,7 @@ export default function Home() {
             >
               Posts
             </h2>
-            {posts.map((post, index) => {
+            {[].map((post, index) => {
               if ('parts' in post) {
                 const series = post
                 return (
