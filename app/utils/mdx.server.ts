@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { bundleMDX } from 'mdx-bundler'
-import { configureRehypePrettyCode } from './rehype-pretty-code'
+import { configureRehypePrettyCode } from './rehype-pretty-code.server'
 import { esbuildPluginBrowserslist } from 'esbuild-plugin-browserslist'
 import browserslist from 'browserslist'
 import esbuildPluginCloudinary from './esbuild-plugin-cloudinary.server'
