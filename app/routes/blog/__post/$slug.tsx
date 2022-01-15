@@ -4,6 +4,7 @@ import invariant from 'tiny-invariant'
 import type { StandalonePost } from '~/utils/posts.server'
 import { bundleMDXPost } from '~/utils/mdx.server'
 import { getMeta } from '~/utils/seo'
+import { POSTS_DIR } from '~/consts.server'
 import { author } from '~/consts'
 import Post from '~/components/Post'
 
@@ -21,7 +22,7 @@ export const loader: LoaderFunction = async ({
 }): Promise<LoaderData> => {
   invariant(params.slug, 'slug is required')
   const { frontmatter, code } = await bundleMDXPost<StandalonePost>(
-    `${__dirname}/../../app/posts/${params.slug}.mdx`,
+    `${POSTS_DIR}/${params.slug}.mdx`,
   )
   if (process.env.NODE_ENV === 'production' && !frontmatter.published) {
     throw new Response('Not Found', { status: 404 })

@@ -5,6 +5,7 @@ import { getSeries, SeriesPart } from '~/utils/posts.server'
 import invariant from 'tiny-invariant'
 import type { LoaderData as StandaloneLoaderData } from './$slug'
 import { getMeta } from '~/utils/seo'
+import { POSTS_DIR } from '~/consts.server'
 import { author } from '~/consts'
 import Post from '~/components/Post'
 
@@ -27,7 +28,7 @@ export const loader: LoaderFunction = async ({
     throw new Response('Not Found', { status: 404 })
   }
   const { frontmatter, code } = await bundleMDXPost<SeriesPart>(
-    `${__dirname}/../../app/posts/${params.series}/${params.slug}.mdx`,
+    `${POSTS_DIR}/${params.series}/${params.slug}.mdx`,
   )
   return {
     ...frontmatter,
