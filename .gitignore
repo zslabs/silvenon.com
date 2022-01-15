@@ -12,14 +12,12 @@ node_modules
 .env
 
 # build
-.cache
-.vercel
-.output
-
-public/build
-public/posts
-public/themes
-api/_build
+/.cache
+/netlify/functions/server/build
+/public/build
+/public/posts
+/public/themes
+/.netlify
 
 app/tailwind.css
 

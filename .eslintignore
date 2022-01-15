@@ -1,6 +1,3 @@
-.cache
-.vercel
-.output
-
-public/build
-api/_build
+/.cache
+/netlify/functions/server/build
+/public/build

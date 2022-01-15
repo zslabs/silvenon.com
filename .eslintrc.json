@@ -25,7 +25,17 @@
       ],
       "rules": {
         "node/no-unpublished-require": "off",
-        "node/no-missing-require": "off"
+        "node/no-missing-require": "off",
+        "node/no-unpublished-import": "off"
+      }
+    },
+    {
+      "files": "functions/*.js",
+      "parserOptions": {
+        "sourceType": "module"
+      },
+      "rules": {
+        "node/no-unsupported-features/es-syntax": "off"
       }
     },
     {
